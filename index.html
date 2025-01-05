@@ -67,6 +67,26 @@
         #myBtn:hover {
             background-color: #555;
         }
+
+        /* Add possibilty to use both centered and left aligned text in the same section: */
+
+        /* Flexbox container */
+            .flex-container {
+            display: flex;
+            justify-content: space-between; /* Space between items */
+            align-items: center; /* Center vertically */
+        }
+
+        /* Left-aligned content */
+        .left-aligned {
+            text-align: left;
+        }
+
+        /* Centered content */
+        .centered {
+            flex: 1; /* Takes available space */
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -113,16 +133,22 @@
     </section>
 
     <section id="contact">
-        <h2>Kontakt</h2>
-        <p>Om ni har frågor om dagen, eller problem med att hitta fram så kan ni kontakta oss via:</p>
-
-        <h3> Lars-Eirik padding: </h3>
-        <p, style="color:red">Mobil: XXXX</p>
-        <p, style="color:red"></p>Email: XXXX</p>
-            
-        <h3> Sara</h3>
-        <p, style="color:red">Mobil: XXXX</p>
-        <p, style="color:red"></p>Email: XXXX</p>
+        <!-- Flexbox layout -->
+        <div class="flex-container">
+            <div class="left-aligned">
+                <h2>Kontakt</h2>
+                <p>Om ni har frågor om dagen, eller problem med att hitta fram så kan ni kontakta oss via:</p>
+            </div>
+            <div class="centered">
+                <h3> Lars-Eirik padding: </h3>
+                <p, style="color:red">Mobil: XXXX</p>
+                <p, style="color:red"></p>Email: XXXX</p>
+                    
+                <h3> Sara</h3>
+                <p, style="color:red">Mobil: XXXX</p>
+                <p, style="color:red"></p>Email: XXXX</p>
+            </div>
+        </div>
     </section>
 
     <footer>
