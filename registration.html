@@ -55,6 +55,14 @@
         .form-container button:hover {
             background-color: #0056b3;
         }
+
+        /* Radio button styling */
+        /* For yes/no optionsre  */
+        .radio-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -81,6 +89,16 @@
 
             <label for="message">Message (Optional)</label>
             <textarea id="message" name="message" rows="4" placeholder="Leave a message..."></textarea>
+
+            <!-- Yes/No Question -->
+            <label>Önskar du att bidra med mat/fika till dagen?</label>
+            <div class="radio-group">
+            <input type="radio" id="yes" name="mat" value="yes" required>
+            <label for="yes">Yes</label>
+
+            <input type="radio" id="no" name="mat" value="no">
+            <label for="no">No</label>
+            </div>
 
             <button type="submit">Register</button>
         </form>
