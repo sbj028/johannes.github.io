@@ -32,9 +32,7 @@
             font-weight: bold;
         }
         .form-container input[type="text"],
-        .form-container input[type="email"],
-        .form-container input[type="password"],
-        .form-container input[type="tel"],
+        .form-container input[type="number"],
         .form-container textarea {
             width: 100%;
             padding: 10px;
@@ -64,6 +62,21 @@
             align-items: center;
         }
     </style>
+    <script>
+        function toggleFamilyMembersInput() {
+            const yesOption = document.getElementById('yes');
+            const familyMembersInput = document.getElementById('family_members');
+            
+            // Enable the integer input if "Yes" is selected, otherwise set it to 0 and disable it
+            if (yesOption.checked) {
+                familyMembersInput.disabled = false;
+                familyMembersInput.value = ''; // Clear the input
+            } else {
+                familyMembersInput.disabled = true;
+                familyMembersInput.value = 0; // Set the input to 0
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="form-container">
@@ -78,8 +91,19 @@
             <label for="message_extra">Önskar du att anmäla flera från samma hushåll? (Om Ja, ange antal här)</label>
             <textarea id="message_extra" name="message_extra" rows="4" placeholder="Hur många extra önskar du att ta med på eventet?"></textarea>
 
-            <label for="message">Message (Optional)</label>
-            <textarea id="message" name="message" rows="4" placeholder="Leave a message..."></textarea>
+              <!-- Yes/No Question- Additional family members? -->
+            <label>Önksar du att anmäla fler från samma hushåll/familj till eventet?</label>
+             <div class="radio-group">
+                <input type="radio" id="yes" name="bringing_family" value="yes" onclick="toggleFamilyMembersInput()" required>
+                <label for="yes">Yes (Ange antal utöver dig själv)</label>
+
+                <input type="radio" id="no" name="bringing_family" value="no" onclick="toggleFamilyMembersInput()">
+                <label for="no">No</label>
+            </div>
+
+        <!-- Integer Input -->
+        <label for="family_members">How many family members are you bringing?</label>
+        <input type="number" id="family_members" name="family_members" min="0" max="10" placeholder="Enter a number" disabled required>
 
             <!-- Yes/No Question -->
             <label>Önskar du att bidra med mat/fika till dagen?</label>
