@@ -88,11 +88,8 @@
             <label for="name">Namn </label>
             <input type="text" id="name" name="name" placeholder="Skriv in ditt namn" required>
 
-            <label for="message_extra">Önskar du att anmäla flera från samma hushåll? (Om Ja, ange antal här)</label>
-            <textarea id="message_extra" name="message_extra" rows="4" placeholder="Hur många extra önskar du att ta med på eventet?"></textarea>
-
-              <!-- Yes/No Question- Additional family members? -->
-            <label>Önksar du att anmäla fler från samma hushåll/familj till eventet?</label>
+            <!-- Yes/No Question- Additional family members? -->
+            <label>Önskar du att anmäla fler från samma hushåll/familj till eventet?</label>
              <div class="radio-group">
                 <input type="radio" id="yes" name="bringing_family" value="yes" onclick="toggleFamilyMembersInput()" required>
                 <label for="yes">Yes (Ange antal utöver dig själv)</label>
@@ -101,9 +98,6 @@
                 <label for="no">No</label>
             </div>
 
-        <!-- Integer Input -->
-        <label for="family_members">How many family members are you bringing?</label>
-        <input type="number" id="family_members" name="family_members" min="0" max="10" placeholder="Enter a number" disabled required>
 
             <!-- Yes/No Question -->
             <label>Önskar du att bidra med mat/fika till dagen?</label>
