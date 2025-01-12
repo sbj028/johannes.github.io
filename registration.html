@@ -59,19 +59,25 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>Guest Registration</h2>
+        <h2>Gästregistrering</h2>
+
+        <p>Fyll i formuläret nedan för att registrera dig till namngivningscermonien.</p>
+        <p>Om en helt hushåll ska registrera sig så räcker det att en person skiver in sitt namn i det översta fältet, märkt med "Namn".</p>
         <form action="/submit_registration" method="POST">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            <label for="name">Namn </label>
+            <input type="text" id="name" name="name" placeholder="Skriv in ditt namn" required>
 
             <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <input type="text" id="email" name="email" placeholder="Enter your email" required>
 
             <label for="phone">Phone Number</label>
             <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+            <label for="message_extra">Önskar du att anmäla flera från samma hushåll? (Om Ja, ange antal här)</label>
+            <textarea id="message_extra" name="message_extra" rows="4" placeholder="Hur många extra önskar du att ta med på eventet?"></textarea>
 
             <label for="message">Message (Optional)</label>
             <textarea id="message" name="message" rows="4" placeholder="Leave a message..."></textarea>
