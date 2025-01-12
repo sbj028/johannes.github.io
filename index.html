@@ -46,8 +46,23 @@
             width: 100%;
         }
 
-        /*Add scroll to top button*/
+        /* Styling registration button */
+            regbutton {
+            background-color: #007bff; /* Blue background */
+            color: white; /* White text */
+            padding: 15px 30px; /* Larger padding for bigger size */
+            font-size: 18px; /* Larger font size */
+            border: none; /* No border */
+            border-radius: 8px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
 
+        /* Optional: Add hover effect */
+        regbutton:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /*Add scroll to top button*/
         #myBtn {
             display: none;
             position: fixed;
@@ -140,7 +155,7 @@
             och om/vad du tar med i matväg till namngivningscermonien. </p>
 
             <!--<button onclick="window.location.href='registration.html'">Registering</button> -->
-            <button onclick="window.location.href='registration.html'" id="myBtn" title="Registrering">Top</button>
+            <button onclick="window.location.href='registration.html'" id="regbutton" title="Registrering">Top</button>
 
     </section>
 
