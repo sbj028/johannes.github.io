@@ -112,6 +112,6 @@ venv.bak/
 #dmypy.json
 
 
-#Ignore files: 
-
-schema.sql
+#Ignore sql databse files: 
+schema.sql  
+.sql 
