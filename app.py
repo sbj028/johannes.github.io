@@ -1,3 +1,4 @@
+import os # Import the os module to access environment variables
 from flask import Flask, request, jsonify
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
@@ -8,13 +9,22 @@ app = Flask(__name__)
 bcrypt = Bcrypt(app)
 CORS(app)  # Enable CORS for all routes
 
-# MySQL Database Configuration
+""" # MySQL Database Configuration
 db_config = {
     "host": "localhost",
     "user": "root",  # Replace with your MySQL username
     "password": "",  # Replace with your MySQL password
     "database": "guest_registration"
-}
+} """
+
+# Environment variables for sensitive data
+db_connection = mysql.connector.connect(
+    host=os.getenv("DATABASE_HOST"),
+    user=os.getenv("DATABASE_USER"),
+    password=os.getenv("DATABASE_PASSWORD"),
+    database=os.getenv("DATABASE_NAME")
+)
+
 
 # Route: Handle Registration Form Submission
 @app.route('/submit_registration', methods=['POST'])
@@ -23,13 +33,12 @@ def register_guest():
 
     # Extract data from request
     name = data.get('name')
-    email = data.get('email')
-    phone = data.get('phone')
-    password = data.get('password')
-    message = data.get('message', '')
+    bringing_family = data.get('bringing_family')
+    family_members = data.get('family_members')
+    food = data.get('food')
 
     # Validate input
-    if not name or not email or not phone or not password:
+    if not name or not bringing_family or not family_members or not food:
         return jsonify({"message": "Please fill in all required fields"}), 400
 
     try:
@@ -37,15 +46,17 @@ def register_guest():
         connection = mysql.connector.connect(**db_config)
         cursor = connection.cursor()
 
+        """ No need for this block as not storing passwords in request:
         # Hash the password
-        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8') 
+        """
 
         # Insert data into the database
         query = """
-            INSERT INTO guests (name, email, phone, password, message)
+            INSERT INTO guests (name, bringing_family, family_members, password, message)
             VALUES (%s, %s, %s, %s, %s)
         """
-        cursor.execute(query, (name, email, phone, hashed_password, message))
+        cursor.execute(query, (name, bringing_family, family_members, hashed_password, message))
         connection.commit()
 
         return jsonify({"message": "Registration successful!"}), 200
