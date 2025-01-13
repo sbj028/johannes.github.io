@@ -46,17 +46,12 @@ def register_guest():
         connection = mysql.connector.connect(**db_config)
         cursor = connection.cursor()
 
-        """ No need for this block as not storing passwords in request:
-        # Hash the password
-        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8') 
-        """
-
         # Insert data into the database
         query = """
-            INSERT INTO guests (name, bringing_family, family_members, password, message)
-            VALUES (%s, %s, %s, %s, %s)
+            INSERT INTO guests (name, bringing_family, family_members, food)
+            VALUES (%s, %s, %s, %s)
         """
-        cursor.execute(query, (name, bringing_family, family_members, hashed_password, message))
+        cursor.execute(query, (name, bringing_family, family_members, food))
         connection.commit()
 
         return jsonify({"message": "Registration successful!"}), 200
