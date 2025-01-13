@@ -93,8 +93,9 @@ instance/
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
 __pypackages__/
 
-# Environments
+# Environments and virtual environments
 .env
+.env.local
 .venv
 env/
 venv/
@@ -113,6 +114,6 @@ regenv/
 #dmypy.json
 
 
-#Ignore sql databse files: 
+#Ignore sql databse dumps: 
 schema.sql  
 .sql 
