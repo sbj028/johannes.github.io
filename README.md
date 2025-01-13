@@ -14,7 +14,13 @@ python -m venv regenv
 source regenv/bin/activate # Linux/macOS
 ```
 
-## Install
+## Install necessary packages to the virtual environment: 
+
+#### Possibly update `pip`: 
+pip install --upgrade pip 
+
+### Flask and dependencies: 
+`pip install flask flask-mysql flask-bcrypt flask-cors`
 
 
 ## Configuration files
