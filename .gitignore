@@ -117,3 +117,6 @@ regenv/
 #Ignore sql databse dumps: 
 schema.sql  
 .sql 
+
+# Ignore private markdown files
+mysql.md
