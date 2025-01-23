@@ -19,10 +19,10 @@ db_config = {
 
 # Environment variables for sensitive data
 db_connection = mysql.connector.connect(
-    host=os.getenv("DATABASE_HOST"),
-    user=os.getenv("DATABASE_USER"),
-    password=os.getenv("DATABASE_PASSWORD"),
-    database=os.getenv("DATABASE_NAME")
+    host=os.getenv("DATABASE_HOST"), # Doppler provides this environment variable
+    user=os.getenv("DATABASE_USER"), # Doppler provides this environment variable
+    password=os.getenv("DATABASE_PASSWORD"), # Doppler provides this environment variable
+    database=os.getenv("DATABASE_NAME")  # Doppler provides this environment variable
 )
 
 
