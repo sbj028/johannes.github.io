@@ -85,7 +85,7 @@
 
         <p>Fyll i formuläret nedan för att registrera dig till namngivningscermonien.</p>
         <p>Om en helt hushåll ska registrera sig så räcker det att en person skiver in sitt namn i fältet "Namn".</p>
-        <form action="/submit_registration" method="POST">
+        <form action="/event_registration" method="POST">
             <label for="name">Namn </label>
             <input type="text" id="name" name="name" placeholder="Skriv in ditt namn" required>
 
@@ -93,10 +93,10 @@
             <label>Önskar du att anmäla fler från samma hushåll/familj till eventet?</label>
              <div class="radio-group">
                 <input type="radio" id="yes" name="bringing_family" value="yes" onclick="toggleFamilyMembersInput()" required>
-                <label for="yes">Yes</label>
+                <label for="yes">Ja</label>
 
                 <input type="radio" id="no" name="bringing_family" value="no" onclick="toggleFamilyMembersInput()">
-                <label for="no">No</label>
+                <label for="no">Nej</label>
             </div>
 
             <!-- Integer Input -->
@@ -107,10 +107,10 @@
             <label>Önskar du att bidra med mat/fika till dagen?</label>
             <div class="radio-group">
             <input type="radio" id="yes" name="food" value="yes" required>
-            <label for="yes">Yes</label>
+            <label for="yes">Ja</label>
 
             <input type="radio" id="no" name="food" value="no">
-            <label for="no">No</label>
+            <label for="no">Nej</label>
             </div>
 
             <button type="submit">Register</button>
