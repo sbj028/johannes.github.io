@@ -27,7 +27,7 @@ db_connection = mysql.connector.connect(
 
 
 # Route: Handle Registration Form Submission
-@app.route('/submit_registration', methods=['POST'])
+@app.route('/event_registration', methods=['POST'])
 def register_guest():
     data = request.json
 
