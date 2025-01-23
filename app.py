@@ -43,7 +43,14 @@ def register_guest():
 
     try:
         # Connect to the database
-        connection = mysql.connector.connect(**db_config)
+        connection = mysql.connector.connect(
+            host=os.getenv("DATABASE_HOST"),
+            user=os.getenv("DATABASE_USER"),
+            password=os.getenv("DATABASE_PASSWORD"),
+            database=os.getenv("DATABASE_NAME")
+        )
+        # Old using db_config above:
+        # connection = mysql.connector.connect(**db_config)
         cursor = connection.cursor()
 
         # Insert data into the database
