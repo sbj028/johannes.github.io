@@ -120,3 +120,8 @@ schema.sql
 
 # Ignore private markdown files
 mysql.md
+
+
+# Ignore these: 
+.~lock.Prints.odt#
+Prints.odt
