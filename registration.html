@@ -65,16 +65,28 @@
     </style>
     <script>
         function toggleFamilyMembersInput() {
-            const yesOption = document.getElementById('yes');
+            //const yesOption = document.getElementById('yes');
+            const bringingFamilyYes = document.getElementById('yes');
             const familyMembersInput = document.getElementById('family_members');
             
-            // Enable the integer input if "Yes" is selected, otherwise set it to 0 and disable it
+            /*         // Enable the integer input if "Yes" is selected, otherwise set it to 0 and disable it
             if (yesOption.checked) {
                 familyMembersInput.disabled = false;
                 familyMembersInput.value = ''; // Clear the input
             } else {
-                familyMembersInput.disabled = false;
+                familyMembersInput.disabled = true;
                 familyMembersInput.value = 0; // Set the input to 0
+            } */
+            
+            if (bringingFamilyYes.checked) {
+                // If user selects "Yes", enable the field
+                familyMembersInput.disabled = false;
+                familyMembersInput.value = "";
+            } else {
+            // If user selects "No", disable the field and set its value to 0
+            familyMembersInput.disabled = false;  // Must re-enable so we can set the value
+            familyMembersInput.value = "0";
+            familyMembersInput.disabled = true;   // Optional: re-disable it if you don't want user changing it
             }
         }
     </script>
