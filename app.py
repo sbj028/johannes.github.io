@@ -43,11 +43,29 @@ def register_guest():
     # Extract data from request form: 
 
     name = request.form.get('name')
-    bringing_family = int(request.form.get('bringing_family'))
-    family_members = request.form.get('family_members')
-    food = int(request.form.get('food'))
+    bringing_family = int(request.form.get('bringing_family',0))
+    # family_members = int(request.form.get('family_members', 0))
 
-    print(request.form) 
+    # family_members might not exist if user didn’t fill it out or if it was disabled
+    family_members_raw = request.form.get('family_members', '0')  # default to string '0'
+
+    print(family_members_raw)
+    # try:
+    #     family_members = int(family_members_raw)
+    # except ValueError:
+    #     family_members = 0  # fallback if user submitted something non-numeric
+
+    if bringing_family == 0:
+        print('here')
+        family_members = 0
+
+
+    food = int(request.form.get('food'))
+    # bringing_family = int(request.form['bringing_family'])
+    # family_members = int(request.form['family_members'])
+    # food = int(request.form['food'])
+
+    print(f'request.form is' , request.form) 
     # Validate input
     if not name or not bringing_family or not family_members or not food:
         return jsonify({"message": "Please fill in all required fields"}), 400
