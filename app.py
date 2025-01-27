@@ -9,13 +9,13 @@ app = Flask(__name__)
 bcrypt = Bcrypt(app)
 CORS(app)  # Enable CORS for all routes
 
-""" # MySQL Database Configuration
+"""c# MySQL Database Configuration
 db_config = {
     "host": "localhost",
     "user": "root",  # Replace with your MySQL username
-    "password": "",  # Replace with your MySQL password
-    "database": "guest_registration"
-} """
+    "password": "password",  # Replace with your MySQL password
+    "database": "event_registration"
+}"""
 
 # Environment variables for sensitive data
 db_connection = mysql.connector.connect(
@@ -27,15 +27,26 @@ db_connection = mysql.connector.connect(
 
 
 # Route: Handle Registration Form Submission
-@app.route('/event_registration', methods=['POST'])
+@app.route('/event_registration', methods=['POST', 'GET'])
 def register_guest():
-    data = request.json
+    if request.method == 'GET':
+        return "This is the event registration endpoint. Use POST to submit data.", 200
+    
+    #data = request.json
 
-    # Extract data from request
-    name = data.get('name')
-    bringing_family = data.get('bringing_family')
-    family_members = data.get('family_members')
-    food = data.get('food')
+    ## Extract data from request
+    #name = data.get('name')
+    #bringing_family = data.get('bringing_family')
+    #family_members = data.get('family_members')
+    #food = data.get('food')
+
+    # Extract data from request form: 
+
+    name = request.form.get('name')
+    bringing_family = request.form.get('bringing_family')
+    family_members = request.form.get('family_members')
+    food = request.form.get('food')
+
 
     # Validate input
     if not name or not bringing_family or not family_members or not food:
@@ -48,9 +59,9 @@ def register_guest():
             user=os.getenv("DATABASE_USER"),
             password=os.getenv("DATABASE_PASSWORD"),
             database=os.getenv("DATABASE_NAME")
-        )
+            )
         # Old using db_config above:
-        # connection = mysql.connector.connect(**db_config)
+        #connection = mysql.connector.connect(**db_config)
         cursor = connection.cursor()
 
         # Insert data into the database
