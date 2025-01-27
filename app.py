@@ -44,20 +44,20 @@ def register_guest():
 
     name = request.form.get('name')
     bringing_family = int(request.form.get('bringing_family',0))
-    # family_members = int(request.form.get('family_members', 0))
+    family_members = int(request.form.get('family_members', 0))
 
     # family_members might not exist if user didn’t fill it out or if it was disabled
-    family_members_raw = request.form.get('family_members', '0')  # default to string '0'
+    #family_members_raw = request.form.get('family_members', '0')  # default to string '0'
 
-    print(family_members_raw)
+    # print(family_members_raw)
     # try:
     #     family_members = int(family_members_raw)
     # except ValueError:
     #     family_members = 0  # fallback if user submitted something non-numeric
 
-    if bringing_family == 0:
-        print('here')
-        family_members = 0
+    # if bringing_family == 0:
+    #     print('here')
+    #     family_members = 0
 
 
     food = int(request.form.get('food'))
@@ -67,8 +67,23 @@ def register_guest():
 
     print(f'request.form is' , request.form) 
     # Validate input
-    if not name or not bringing_family or not family_members or not food:
-        return jsonify({"message": "Please fill in all required fields"}), 400
+    # if not name or not bringing_family or not family_members or not food:
+    #     return jsonify({"message": "Please fill in all required fields"}), 400
+
+    # Validate input
+    # # Basic check for truly missing fields:
+
+    bringing_family_str = request.form.get('bringing_family')
+    family_members_str = request.form.get('family_members')
+    food_str = request.form.get('food')
+
+    if not all([name.strip(), bringing_family_str, family_members_str, food_str]):
+        return "Please fill in all required fields", 400
+
+
+    # if not name or bringing_family < 0 or family_members <0 or food < 0:
+    #     return jsonify({"message": "Please fill in all required fields"}), 400
+
 
     # Debugging: 
 
