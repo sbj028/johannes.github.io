@@ -43,15 +43,18 @@ def register_guest():
     # Extract data from request form: 
 
     name = request.form.get('name')
-    bringing_family = request.form.get('bringing_family')
+    bringing_family = int(request.form.get('bringing_family'))
     family_members = request.form.get('family_members')
-    food = request.form.get('food')
+    food = int(request.form.get('food'))
 
-
+    print(request.form) 
     # Validate input
     if not name or not bringing_family or not family_members or not food:
         return jsonify({"message": "Please fill in all required fields"}), 400
 
+    # Debugging: 
+
+    print(request.form)
     try:
         # Connect to the database
         connection = mysql.connector.connect(
