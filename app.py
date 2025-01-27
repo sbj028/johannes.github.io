@@ -77,6 +77,12 @@ def register_guest():
     family_members_str = request.form.get('family_members')
     food_str = request.form.get('food')
 
+    if bringing_family == 1 and family_members <= 0:
+        return "Error: You said you're bringing family but set 0 family members.", 400
+    if bringing_family == 0 and family_members != 0:
+        return "Error: You said you're not bringing family but set family_members > 0.", 400
+
+
     if not all([name.strip(), bringing_family_str, family_members_str, food_str]):
         return "Please fill in all required fields", 400
 

@@ -95,21 +95,39 @@
             const hiddenInput = document.getElementById('family_members_hidden');
             const displayInput = document.getElementById('family_members_display');
 
-            if (bringingFamilyYes.checked) {
-                // "Yes" => let user specify a number
-                displayInput.disabled = false;
-                familyInput.min = 1;  // now the minimum is 1, preventing "0" from being submitted
-                // Keep them in sync so user’s input is posted
-                displayInput.addEventListener('input', () => {
-                hiddenInput.value = displayInput.value;
-                });
-            } else {
-                // "No" => forcibly set the hidden input to 0
-                displayInput.value = "";
-                displayInput.disabled = true;
-                hiddenInput.value = "0";
-                familyInput.min = 0;     // Reset min (just to be consistent)
-            }
+            // if (bringingFamilyYes.checked) {
+            //     // "Yes" => let user specify a number
+            //     displayInput.disabled = false;
+        
+            //     // Keep them in sync so user’s input is posted
+            //     displayInput.addEventListener('input', () => {
+            //     hiddenInput.value = displayInput.value;
+            //     });
+            // } else {
+            //     // "No" => forcibly set the hidden input to 0
+            //     displayInput.value = "";
+            //     displayInput.disabled = true;
+            //     hiddenInput.value = "0";
+            //     familyInput.min = 0;     // Reset min (just to be consistent)
+            // }
+        // }
+
+        if (ringingFamilyYes.checked) {
+            // "Yes" => enable the display input
+            displayInput.disabled = false;
+            displayInput.value = "";
+            displayInput.min = 1;
+        } else {
+            // "No" => forcibly set hidden to "0"
+            displayInput.value = "";
+            displayInput.disabled = true;
+            hiddenInput.value = "0";
+        }
+
+        // Sync changes from display to hidden
+        displayInput.addEventListener('input', () => {
+            hiddenInput.value = displayInput.value;
+        });
         }
     </script>
 </head>
