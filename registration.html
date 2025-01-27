@@ -64,29 +64,49 @@
         }
     </style>
     <script>
+        // function toggleFamilyMembersInput() {
+        //     //const yesOption = document.getElementById('yes');
+        //     const bringingFamilyYes = document.getElementById('yes');
+        //     const familyMembersInput = document.getElementById('family_members');
+            
+        //     /*         // Enable the integer input if "Yes" is selected, otherwise set it to 0 and disable it
+        //     if (yesOption.checked) {
+        //         familyMembersInput.disabled = false;
+        //         familyMembersInput.value = ''; // Clear the input
+        //     } else {
+        //         familyMembersInput.disabled = true;
+        //         familyMembersInput.value = 0; // Set the input to 0
+        //     } */
+            
+        //     if (bringingFamilyYes.checked) {
+        //         // If user selects "Yes", enable the field
+        //         familyMembersInput.disabled = false;
+        //         familyMembersInput.value = "";
+        //     } else {
+        //     // If user selects "No", disable the field and set its value to 0
+        //     familyMembersInput.disabled = false;  // Must re-enable so we can set the value
+        //     familyMembersInput.value = "0";
+        //     familyMembersInput.disabled = true;   // Optional: re-disable it if you don't want user changing it
+        //     }
+        // }
+
         function toggleFamilyMembersInput() {
-            //const yesOption = document.getElementById('yes');
             const bringingFamilyYes = document.getElementById('yes');
-            const familyMembersInput = document.getElementById('family_members');
-            
-            /*         // Enable the integer input if "Yes" is selected, otherwise set it to 0 and disable it
-            if (yesOption.checked) {
-                familyMembersInput.disabled = false;
-                familyMembersInput.value = ''; // Clear the input
-            } else {
-                familyMembersInput.disabled = true;
-                familyMembersInput.value = 0; // Set the input to 0
-            } */
-            
+            const hiddenInput = document.getElementById('family_members_hidden');
+            const displayInput = document.getElementById('family_members_display');
+
             if (bringingFamilyYes.checked) {
-                // If user selects "Yes", enable the field
-                familyMembersInput.disabled = false;
-                familyMembersInput.value = "";
+                // "Yes" => let user specify a number
+                displayInput.disabled = false;
+                // Keep them in sync so user’s input is posted
+                displayInput.addEventListener('input', () => {
+                hiddenInput.value = displayInput.value;
+                });
             } else {
-            // If user selects "No", disable the field and set its value to 0
-            familyMembersInput.disabled = false;  // Must re-enable so we can set the value
-            familyMembersInput.value = "0";
-            familyMembersInput.disabled = true;   // Optional: re-disable it if you don't want user changing it
+                // "No" => forcibly set the hidden input to 0
+                displayInput.value = "";
+                displayInput.disabled = true;
+                hiddenInput.value = "0";
             }
         }
     </script>
@@ -112,8 +132,22 @@
             </div>
 
             <!-- Integer Input -->
-            <label for="family_members">Hur många extra tar du med?</label>
-            <input type="number" id="family_members" name="family_members" min="0" max="10" placeholder="Ange antal utöver dig själv" disabled required>
+            <!-- <label for="family_members">Hur många extra tar du med?</label>
+            <input type="number" id="family_members" name="family_members" min="0" max="10" placeholder="Ange antal utöver dig själv" disabled required> -->
+
+            <!-- Hidden field that’s *always* submitted -->
+            <input type="hidden" id="family_members_hidden" name="family_members" value="0" />
+
+            <!-- Visible field for user input, might be disabled if "No" is selected -->
+            <label for="family_members_display">Hur många extra tar du med?</label>
+                <input 
+                    type="number" 
+                    id="family_members_display" 
+                    min="0" 
+                    max="10" 
+                    placeholder="Ange antal utöver dig själv"
+                    disabled
+                >
 
             <!-- Yes/No Question -->
             <label>Önskar du att bidra med mat/fika till dagen?</label>
