@@ -1,5 +1,5 @@
 import os # Import the os module to access environment variables
-from flask import Flask, request, jsonify
+from flask import Flask, request, redirect, url_for, jsonify
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 import mysql.connector
@@ -25,6 +25,12 @@ db_connection = mysql.connector.connect(
     database=os.getenv("DATABASE_NAME")  # Doppler provides this environment variable
 )
 
+@app.route('/')
+def home():
+    return '''
+    <h1>Välkommen till Johannes hemsida</h1>
+    <p><a href="/event_registration">Till Registreringen</a></p>
+    '''
 
 # Route: Handle Registration Form Submission
 @app.route('/event_registration', methods=['POST', 'GET'])
@@ -127,6 +133,14 @@ def register_guest():
         if connection.is_connected():
             cursor.close()
             connection.close()
+
+    # 4. On success, redirect to the success page
+    return redirect(url_for('registration_success'))
+
+# Route: Registration Success Page
+@app.route('/registration_success')
+def registration_success():
+    return "Registration successful!"
 
 # Start the Flask application
 if __name__ == '__main__':
