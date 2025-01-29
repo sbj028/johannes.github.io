@@ -88,7 +88,7 @@ def register_guest():
 def registration_success():
     # return "Registration successful!"
     # Render the separate 'registration_success.html' file
-    return render_template('registration_success.html')
+    return render_template('registration_success')
 
 # Start the Flask application
 if __name__ == '__main__':
