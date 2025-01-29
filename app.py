@@ -27,10 +27,11 @@ db_connection = mysql.connector.connect(
 
 @app.route('/')
 def home():
-    return '''
-    <h1>Välkommen till Johannes hemsida</h1>
-    <p><a href="/event_registration">Till Registreringen</a></p>
-    '''
+    return render_template('index.html')
+    # return '''
+    # <h1>Välkommen till Johannes hemsida</h1>
+    # <p><a href="/event_registration">Till Registreringen</a></p>
+    # '''
 
 # Route: Handle Registration Form Submission
 @app.route('/event_registration', methods=['POST', 'GET'])
@@ -140,7 +141,9 @@ def register_guest():
 # Route: Registration Success Page
 @app.route('/registration_success')
 def registration_success():
-    return "Registration successful!"
+    # return "Registration successful!"
+    # Render the separate 'registration_success.html' file
+    return render_template('registration_success.html')
 
 # Start the Flask application
 if __name__ == '__main__':
