@@ -19,7 +19,7 @@ db_connection = mysql.connector.connect(
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html') # Ensure index.html is inside templates/
 
 
 # Route: Handle Registration Form Submission
