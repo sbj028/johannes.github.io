@@ -1,5 +1,5 @@
 import os # Import the os module to access environment variables
-from flask import Flask, request, redirect, url_for, jsonify
+from flask import Flask, request, redirect, url_for, jsonify, render_template
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 import mysql.connector
