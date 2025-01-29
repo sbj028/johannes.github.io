@@ -125,3 +125,5 @@ mysql.md
 # Ignore these: 
 .~lock.Prints.odt#
 Prints.odt
+
+old_app.py
