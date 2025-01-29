@@ -69,7 +69,10 @@ def register_guest():
         cursor.execute(query, (name, bringing_family, family_members, food))
         connection.commit()
 
-        return jsonify({"message": "Registration successful!"}), 200
+        # 4. On success, redirect to the success page
+        return redirect(url_for('registration_success'))
+
+        #return jsonify({"message": "Registration successful!"}), 200
 
     except Error as e:
         print(f"Database error: {e}")
@@ -79,9 +82,6 @@ def register_guest():
         if connection.is_connected():
             cursor.close()
             connection.close()
-
-    # 4. On success, redirect to the success page
-    return redirect(url_for('registration_success'))
 
 # Route: Registration Success Page
 @app.route('/registration_success')
