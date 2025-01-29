@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="sv-SE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Homepage</title>
+    <style>
+        body {
+            font-family: "Lucida Console", "Courier New", monospace;
+            margin: 0;
+            padding: 0;
+            background-color: rgba(73, 189, 102, 0.4);
+            color: #333;
+        }
+        header {
+            background-color: rgba(64, 163, 89, 0.6);
+            color: #333;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            background: #333;
+            padding: 10px;
+            text-align: left;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+        }
+        nav a:hover {
+            background-color: #575757;
+            border-radius: 4px;
+        }
+        section {
+            padding: 20px;
+            text-align: left;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: left;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Styling registration button */
+        button {
+            background-color: #007bff; /* Blue background */
+            color: white; /* White text */
+            padding: 15px 30px; /* Larger padding for bigger size */
+            font-size: 18px; /* Larger font size */
+            border: none; /* No border */
+            border-radius: 8px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            position: center; /* Center the button */
+        }
+
+        /* Optional: Add hover effect */
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /*Add scroll to top button*/
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: rgb(69, 145, 126);
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        #myBtn:hover {
+            background-color: #555;
+        }
+
+        /* Add possibilty to use both centered and left aligned text in the same section: */
+
+        /* Flexbox container */
+            .flex-container {
+            display: flex;
+            justify-content: space-between; /* Space between items */
+            align-items: center; /* Center vertically */
+        }
+
+        /* Left-aligned content */
+        .left-aligned {
+            text-align: center;
+            margin-right: 50px;
+            margin-left: 50px;
+        }
+
+        /* Centered content */
+        .right-aligned {
+            flex: 1; /* Takes available space */
+            margin-left: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Johannes</h1>
+        <h2> Lördag 3/5 2025<h2>
+    </header>
+    <nav>
+        <a href="#about">Om dagen</a>
+        <a href="#where">Plats och tid</a>
+        <a href="#gifts">Presenter och mat</a>
+        <a href="#info">Information</a>
+        <a href="#osa">OSA/RSVP</a>
+        <a href="#contact">Kontakt</a>
+    </nav>
+    <section id="about">
+        <h2>Om dagen</h2>
+        <p >Vi önskar att samla när familj och vänner till en informell namngivningscermoni för Johannes lördag den 3 maj 2025.</p>
+        <p >Vi planerar inte för något speciellt upplägg, utan ser hellre för oss att vi får möjlighet att umgås några timmar tillsammans, äta lite enklare lunch, njuta en kopp kaffe/te med något sött till.</p>
+
+        <p, style="color: red;"> Kombinerad födelsedagsfirande och namngivningscermoni?</p>
+
+
+    </section>
+    <section id="where">
+        <h2>Plats och tid</h2>
+        <p>Vi möts på personalrummet, Tromstun ungdomsskole, klockan XXXX.</p>
+        <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1387.4624776316314!2d19.010681677856642!3d69.65019498113506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x45c4c44b1742b8a5%3A0x8780271afb641d6b!2sTromstun%20school!5e0!3m2!1ssv!2sno!4v1736065079905!5m2!1ssv!2sno" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+        <!-- Add link to Tromstun skole-->
+        <!-- Add information ablut how to get to the personalrum-->
+    </section>
+    <section id="gifts">
+        <h2>Presenter och mat</h2>
+        <!-- <p>Vi tackar vänligt men bestämt nej till dopsgåvor/dåpgaver, och ber er att respektera detta</p> -->
+        <!-- <p>Om ni vill bidra till själva dagen så hade vi satt stort pris på </p> -->
+    </section>
+    <section id="info">
+        <h2>Annan nyttig information</h2>
+        <!-- <p>Parkering/avgift?, transport (buss), link till skolan, hur kommer man in på personalrunmmet</p> -->
+    </section>
+
+    <section id="OSA/RSVP">
+        <h2>OSA/RSVP</h2>
+
+        <p, style="color:red;"> Registrering till dagen kan göras genom att klicka på knappen "REGISTRERING" nedanför. Om flera från samma hushåll önskar att bli med på dagen, så kan du ange det i formuläret. </p>
+        <p, style="color:red;" Sista dag för att meddela att du kommer är den XXXXX. </p>
+        
+        
+        <p, style="color:red;"> Om du kryssar för att du önskar att bidra med mat eller fika till själva dagen så kommer vi att kontakta dig närmare inpå för att registrera vad.  </p>  
+
+            <!--<button onclick="window.location.href='registration.html'">Registering</button> -->
+            <button onclick="window.location.href='templlates/registration.html'" id="regbutton" title="Registrering">REGISTRERING</button>
+
+    </section>
+
+<!--     <section id="contact"> -->
+<!--        Flexbox layout -->
+<!--         <div class="flex-container">
+            <div class="left-aligned">
+                <h2>Kontakt</h2>
+                <p>Om ni har frågor om dagen, eller problem med att hitta fram så kan ni kontakta oss via:</p>
+            </div>
+            <div class="centered">
+                <h3> Lars-Eirik padding: </h3>
+                <p, style="color:red">Mobil: XXXX</p>
+                <p, style="color:red"></p>Email: XXXX</p>
+                    
+                <h3> Sara</h3>
+                <p, style="color:red">Mobil: XXXX</p>
+                <p, style="color:red"></p>Email: XXXX</p>
+            </div>
+        </div> -->
+    <!-- </section> -->
+    <section>
+        <!-- Flexbox layout -->
+        <div class="flex-container">
+            <div class="left-aligned">
+                <h2>Lars-Eirik</h2>
+                <p, style="color:red">Mobil: XXXX</p>
+                <p, style="color:red"></p>Email: XXXX</p>
+            </div>
+            <div class="right-aligned">
+                <h2>Sara</h2>
+                <p, style="color:red">Mobil: XXXX</p>
+                <p, style="color:red"></p>Email: XXXX</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 My Homepage. All rights reserved.
+    </footer>
+
+    <!-- Add scroll to top button functionality-->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+        /* Add scroll to top button */
+    <script>
+    // Get the button
+    let mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    }
+    </script>
+
+</body>
+</html>
