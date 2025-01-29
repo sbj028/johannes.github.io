@@ -70,7 +70,7 @@ def register_guest():
         connection.commit()
 
         # 4. On success, redirect to the success page
-        return redirect(url_for('registration_success.html'))
+        return redirect(url_for('registration_success'))
 
         #return jsonify({"message": "Registration successful!"}), 200
 
