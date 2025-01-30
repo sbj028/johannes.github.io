@@ -131,6 +131,6 @@ old_app.py
 # FIrebase related files: 
 firebase.*
 firebase_config.html
-.firebase
+.firebaserc
 apphosting.yaml
-databse.rules.json
+database.rules.json
