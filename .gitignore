@@ -128,5 +128,9 @@ Prints.odt
 
 old_app.py
 
+# FIrebase related files: 
 firebase.*
 firebase_config.html
+.firebase
+apphosting.yaml
+databse.rules.json
