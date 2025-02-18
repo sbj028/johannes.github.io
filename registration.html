@@ -187,17 +187,17 @@
             e.preventDefault();
 
             const name = document.getElementById("name").value;
-            const bringingFamily = document.getElementById("bringing_family").checked ? 1 : 0;
-            const familyMembers = document.getElementById("family_members").value || 0;
-            const food = document.getElementById("food").value;
+            const bringingFamily = document.querySelector('input[name="bringing_family"]:checked').value;
+            const familyMembers = document.getElementById("family_members_hidden").value;
+            const food = document.querySelector('input[name="food"]:checked').value;
 
             // Add data to Firestore
             addDoc(collection(db, "registrations"), {
-            name: name,
-            bringing_family: bringingFamily,
-            family_members: parseInt(familyMembers),
-            food: parseInt(food),
-            timestamp: serverTimestamp()
+                name: name,
+                bringing_family: parseInt(bringingFamily),
+                family_members: parseInt(familyMembers),
+                food: parseInt(food),
+                timestamp: serverTimestamp()
             })
             .then(() => {
                 // Redirect to a success page (e.g., registration_success.html)
