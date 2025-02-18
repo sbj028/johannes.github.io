@@ -235,7 +235,12 @@
 
         // ✅ Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
+
+        // Using Firebase Realtime Database:
+        //const database = getDatabase(app);
+
+        // using Firebase Firestone instead of Realtime Database: 
+        const db = firebase.firestore()
 
         // ✅ Handle Form Submission
         document.getElementById('registrationForm').addEventListener('submit', function (e) {
@@ -246,18 +251,36 @@
             const familyMembers = document.getElementById("family_members").value || 0;
             const food = document.getElementById("food").value;
 
-            // ✅ Store data in Firebase Database
-            const newRegistrationRef = push(ref(database, "registrations"));
-            set(newRegistrationRef, {
+            //     // ✅ Store data in Firebase Realitme Database
+            //     const newRegistrationRef = push(ref(database, "registrations"));
+            //     set(newRegistrationRef, {
+            //         name: name,
+            //         bringing_family: bringingFamily,
+            //         family_members: parseInt(familyMembers),
+            //         food: parseInt(food)
+            //     }).then(() => {
+            //         // ✅ Redirect to Registration Success Page
+            //         window.location.href = "registration_success.html";
+            //     }).catch(error => {
+            //         console.error("Error:", error);
+            //         alert("Ett fel har uppstått under registreringen. Pröva igen.");
+            //     });
+            // });
+
+            // Save the data to Firestore
+            db.collection("registrations").add({
                 name: name,
                 bringing_family: bringingFamily,
                 family_members: parseInt(familyMembers),
-                food: parseInt(food)
-            }).then(() => {
-                // ✅ Redirect to Registration Success Page
+                food: parseInt(food),
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => {
+                // Redirect to a success page (e.g., registration_success.html)
                 window.location.href = "registration_success.html";
-            }).catch(error => {
-                console.error("Error:", error);
+            })
+            .catch((error) => {
+                console.error("Error registering:", error);
                 alert("Ett fel har uppstått under registreringen. Pröva igen.");
             });
         });
