@@ -64,64 +64,18 @@
         }
     </style>
     <script>
-        // function toggleFamilyMembersInput() {
-        //     //const yesOption = document.getElementById('yes');
-        //     const bringingFamilyYes = document.getElementById('yes');
-        //     const familyMembersInput = document.getElementById('family_members');
-            
-        //     /*         // Enable the integer input if "Yes" is selected, otherwise set it to 0 and disable it
-        //     if (yesOption.checked) {
-        //         familyMembersInput.disabled = false;
-        //         familyMembersInput.value = ''; // Clear the input
-        //     } else {
-        //         familyMembersInput.disabled = true;
-        //         familyMembersInput.value = 0; // Set the input to 0
-        //     } */
-            
-        //     if (bringingFamilyYes.checked) {
-        //         // If user selects "Yes", enable the field
-        //         familyMembersInput.disabled = false;
-        //         familyMembersInput.value = "";
-        //     } else {
-        //     // If user selects "No", disable the field and set its value to 0
-        //     familyMembersInput.disabled = false;  // Must re-enable so we can set the value
-        //     familyMembersInput.value = "0";
-        //     familyMembersInput.disabled = true;   // Optional: re-disable it if you don't want user changing it
-        //     }
-        // }
-
         function toggleFamilyMembersInput() {
             const bringingFamilyYes = document.getElementById('yes');
             const hiddenInput = document.getElementById('family_members_hidden');
             const displayInput = document.getElementById('family_members_display');
 
-            // if (bringingFamilyYes.checked) {
-            //     // "Yes" => let user specify a number
-            //     displayInput.disabled = false;
-        
-            //     // Keep them in sync so user’s input is posted
-            //     displayInput.addEventListener('input', () => {
-            //     hiddenInput.value = displayInput.value;
-            //     });
-            // } else {
-            //     // "No" => forcibly set the hidden input to 0
-            //     displayInput.value = "";
-            //     displayInput.disabled = true;
-            //     hiddenInput.value = "0";
-            //     familyInput.min = 0;     // Reset min (just to be consistent)
-            // }
-            // }
-
+    
             if (bringingFamilyYes.checked) {
                 // "Yes" => enable the display input
                 displayInput.disabled = false;
                 displayInput.required = true;
                 displayInput.value = "";
                 displayInput.min = 1;
-
-                // // Clear hiddenInput so it’s no longer "0".
-                // // We'll rely on user input to update it:
-                // hiddenInput.value = "";
 
                 // Whenever user types, mirror to the hidden input:
                 displayInput.addEventListener('input', () => {
@@ -136,11 +90,6 @@
 
                 hiddenInput.value = "0";
             }
-
-            // // Sync changes from display to hidden
-            // displayInput.addEventListener('input', () => {
-            //     hiddenInput.value = displayInput.value;
-            // });
         }
     </script>
 </head>
@@ -151,14 +100,12 @@
 
         <p>Fyll i formuläret nedan för att registrera dig till namngivningscermonien.</p>
         <p>Om en helt hushåll ska registrera sig så räcker det att en person skiver in sitt namn i fältet "Namn".</p>
-        <!-- <form action="http://127.0.0.1:5000/event_registration" method="POST"> -->
             <label for="name">Namn </label>
             <input type="text" id="name" name="name" placeholder="Skriv in ditt namn" required>
 
             <!-- Yes/No Question- Additional family members? -->
             <label>Önskar du att anmäla fler från samma hushåll/familj till eventet?</label>
              <div class="radio-group">
-                <!-- <input type="radio" id="yes" name="bringing_family" value="1" onclick="toggleFamilyMembersInput()" required> -->
                 <input 
                     type="radio" 
                     id="yes" 
@@ -178,10 +125,6 @@
                 >
                 <label for="no">Nej</label>
             </div>
-
-            <!-- Integer Input -->
-            <!-- <label for="family_members">Hur många extra tar du med?</label>
-            <input type="number" id="family_members" name="family_members" min="0" max="10" placeholder="Ange antal utöver dig själv" disabled required> -->
 
             <!-- Hidden field that’s *always* submitted -->
             <input 
@@ -218,10 +161,6 @@
 
         <!-- Firebase SDK -->
         <script type="module">
-            // // ✅ Import Firebase SDK
-            // import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-            // //import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-            // import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
             // ✅ Import Firebase SDK for Firestore (v9+ modular API)
             import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
             import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
@@ -241,11 +180,6 @@
         // ✅ Initialize Firebase
         const app = initializeApp(firebaseConfig);
 
-        // Using Firebase Realtime Database:
-        //const database = getDatabase(app);
-
-        // using Firebase Firestone instead of Realtime Database: 
-        //const db = firebase.firestore()
         const db = getFirestore(app); // Used by Firestore SDK (v9 and above) 
 
         // ✅ Handle Form Submission
@@ -257,29 +191,13 @@
             const familyMembers = document.getElementById("family_members").value || 0;
             const food = document.getElementById("food").value;
 
-            //     // ✅ Store data in Firebase Realitme Database
-            //     const newRegistrationRef = push(ref(database, "registrations"));
-            //     set(newRegistrationRef, {
-            //         name: name,
-            //         bringing_family: bringingFamily,
-            //         family_members: parseInt(familyMembers),
-            //         food: parseInt(food)
-            //     }).then(() => {
-            //         // ✅ Redirect to Registration Success Page
-            //         window.location.href = "registration_success.html";
-            //     }).catch(error => {
-            //         console.error("Error:", error);
-            //         alert("Ett fel har uppstått under registreringen. Pröva igen.");
-            //     });
-            // });
-
-                // Add data to Firestore
-                addDoc(collection(db, "registrations"), {
-                name: name,
-                bringing_family: bringingFamily,
-                family_members: parseInt(familyMembers),
-                food: parseInt(food),
-                timestamp: serverTimestamp()
+            // Add data to Firestore
+            addDoc(collection(db, "registrations"), {
+            name: name,
+            bringing_family: bringingFamily,
+            family_members: parseInt(familyMembers),
+            food: parseInt(food),
+            timestamp: serverTimestamp()
             })
             .then(() => {
                 // Redirect to a success page (e.g., registration_success.html)
