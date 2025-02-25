@@ -98,7 +98,6 @@
         <h2>Gästregistrering</h2>
         <p>Fyll i formuläret nedan för att registrera dig till namngivningscermonien.</p>
         <p>Om en helt hushåll ska registrera sig så räcker det att en person skiver in sitt namn i fältet "Namn".</p>
-        <!--<form id="registrationForm"></form> -->
         <form id="registrationForm">
             <label for="name">Namn </label>
             <input type="text" id="name" name="name" placeholder="Skriv in ditt namn" required>
@@ -148,7 +147,6 @@
             <!-- Yes/No Question -->
             <label>Önskar du att bidra med mat/fika till dagen?</label>
             <div class="radio-group">
-                <!-- <input type="radio" id="yes" name="food" value="1" required> -->
                 <input type="radio" id="yesFood" name="food" value="1" required>
                 <label for="yesFood">Ja</label>
 
@@ -161,26 +159,12 @@
     </div>
 
     <!-- Firebase SDK -->
-    <!--<script type="module"> -->
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js"></script>
-
-    <!-- Previous version: 
-    // ✅ Import Firebase SDK for Firestore (v9+ modular API)
-    //import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-    //import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js"; -->
 
     <script>
         // ✅ Firebase Configuration (Replace with Your Firebase Details)
         const firebaseConfig = {
-            // apiKey: "AIzaSyAapjkSdw-kjOfDY7NzpYSPbYsBHNyM_5g",
-            // authDomain: "eventregistration-62648.firebaseapp.com",
-            // databaseURL: "https://eventregistration-62648-default-rtdb.europe-west1.firebasedatabase.app",
-            // projectId: "eventregistration-62648",
-            // storageBucket: "eventregistration-62648.firebasestorage.app",
-            // messagingSenderId: "142811142051",
-            // appId: "1:142811142051:web:b11b7f57ec1177cb3c2c16"
             apiKey: "AIzaSyDEk82P1X1aJVELBIt8D4qQ21G2hPAJuMQ",
             authDomain: "eventregistration-d68ae.firebaseapp.com",
             projectId: "eventregistration-d68ae",
@@ -188,10 +172,6 @@
             messagingSenderId: "436276449567",
             appId: "1:436276449567:web:57a1d8107cc14ed579202a"
         };
-
-        // ✅ Initialize Firebase
-        //const app = initializeApp(firebaseConfig);
-        //const db = getFirestore(app); // Used by Firestore SDK (v9 and above) 
         
         // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
@@ -205,23 +185,6 @@
             const bringingFamily = document.querySelector('input[name="bringing_family"]:checked').value;
             const familyMembers = document.getElementById("family_members_hidden").value;
             const food = document.querySelector('input[name="food"]:checked').value;
-
-            // // Add data to Firestore
-            // addDoc(collection(db, "registrations"), {
-            //     name: name,
-            //     bringing_family: parseInt(bringingFamily),
-            //     family_members: parseInt(familyMembers),
-            //     food: parseInt(food),
-            //     timestamp: serverTimestamp()
-            // })
-            // .then(() => {
-            //     // Redirect to a success page (e.g., registration_success.html)
-            //     window.location.href = "registration_success.html";
-            // })
-            // .catch((error) => {
-            //     console.error("Error registering:", error);
-            //     alert("Ett fel har uppstått under registreringen. Pröva igen.");
-            // });
 
             // Add data to Firestore
             db.collection("registrations").add({
