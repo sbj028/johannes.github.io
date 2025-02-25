@@ -160,13 +160,18 @@
         </form>
     </div>
 
-        <!-- Firebase SDK -->
-        <script type="module">
-            // ✅ Import Firebase SDK for Firestore (v9+ modular API)
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-            import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+    <!-- Firebase SDK -->
+    <!--<script type="module"> -->
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js"></script>
 
+    <!-- Previous version: 
+    // ✅ Import Firebase SDK for Firestore (v9+ modular API)
+    //import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    //import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js"; -->
 
+    <script>
         // ✅ Firebase Configuration (Replace with Your Firebase Details)
         const firebaseConfig = {
             // apiKey: "AIzaSyAapjkSdw-kjOfDY7NzpYSPbYsBHNyM_5g",
@@ -185,9 +190,12 @@
         };
 
         // ✅ Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-
-        const db = getFirestore(app); // Used by Firestore SDK (v9 and above) 
+        //const app = initializeApp(firebaseConfig);
+        //const db = getFirestore(app); // Used by Firestore SDK (v9 and above) 
+        
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore(app);
 
         // ✅ Handle Form Submission
         document.getElementById('registrationForm').addEventListener('submit', function (e) {
@@ -198,17 +206,33 @@
             const familyMembers = document.getElementById("family_members_hidden").value;
             const food = document.querySelector('input[name="food"]:checked').value;
 
+            // // Add data to Firestore
+            // addDoc(collection(db, "registrations"), {
+            //     name: name,
+            //     bringing_family: parseInt(bringingFamily),
+            //     family_members: parseInt(familyMembers),
+            //     food: parseInt(food),
+            //     timestamp: serverTimestamp()
+            // })
+            // .then(() => {
+            //     // Redirect to a success page (e.g., registration_success.html)
+            //     window.location.href = "registration_success.html";
+            // })
+            // .catch((error) => {
+            //     console.error("Error registering:", error);
+            //     alert("Ett fel har uppstått under registreringen. Pröva igen.");
+            // });
+
             // Add data to Firestore
-            addDoc(collection(db, "registrations"), {
+            db.collection("registrations").add({
                 name: name,
                 bringing_family: parseInt(bringingFamily),
                 family_members: parseInt(familyMembers),
                 food: parseInt(food),
-                timestamp: serverTimestamp()
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
             })
             .then(() => {
-                // Redirect to a success page (e.g., registration_success.html)
-                window.location.href = "registration_success.html";
+                window.location.href = "registration_success.html"; // Redirect on success
             })
             .catch((error) => {
                 console.error("Error registering:", error);
