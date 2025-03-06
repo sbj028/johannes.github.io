@@ -13,7 +13,7 @@
             padding: 30px; /* Increased padding inside the form */
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center; <!--<form id="registrationForm"></form> -->
             height: 100vh;
         }
         .form-container {
@@ -98,7 +98,6 @@
         <h2>Gästregistrering</h2>
         <p>Fyll i formuläret nedan för att registrera dig till namngivningscermonien.</p>
         <p>Om en helt hushåll ska registrera sig så räcker det att en person skiver in sitt namn i fältet "Namn".</p>
-        <!--<form id="registrationForm"></form> -->
         <form id="registrationForm">
             <label for="name">Namn </label>
             <input type="text" id="name" name="name" placeholder="Skriv in ditt namn" required>
@@ -148,7 +147,6 @@
             <!-- Yes/No Question -->
             <label>Önskar du att bidra med mat/fika till dagen?</label>
             <div class="radio-group">
-                <!-- <input type="radio" id="yes" name="food" value="1" required> -->
                 <input type="radio" id="yesFood" name="food" value="1" required>
                 <label for="yesFood">Ja</label>
 
@@ -160,28 +158,13 @@
         </form>
     </div>
 
-    <!-- Firebase SDK -->
-    <!--<script type="module"> -->
-    <!-- Firebase SDK -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js"></script> -->
-
-    <!-- Previous version: 
     // ✅ Import Firebase SDK for Firestore (v9+ modular API) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 
-        //<script>
         // ✅ Firebase Configuration (Replace with Your Firebase Details)
         const firebaseConfig = {
-            // apiKey: "AIzaSyAapjkSdw-kjOfDY7NzpYSPbYsBHNyM_5g",
-            // authDomain: "eventregistration-62648.firebaseapp.com",
-            // databaseURL: "https://eventregistration-62648-default-rtdb.europe-west1.firebasedatabase.app",
-            // projectId: "eventregistration-62648",
-            // storageBucket: "eventregistration-62648.firebasestorage.app",
-            // messagingSenderId: "142811142051",
-            // appId: "1:142811142051:web:b11b7f57ec1177cb3c2c16"
             apiKey: "AIzaSyDEk82P1X1aJVELBIt8D4qQ21G2hPAJuMQ",
             authDomain: "eventregistration-d68ae.firebaseapp.com",
             projectId: "eventregistration-d68ae",
@@ -193,10 +176,7 @@
         //✅ Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app); // Used by Firestore SDK (v9 and above) 
-        
-        // // Initialize Firebase
-        // const app = firebase.initializeApp(firebaseConfig);
-        // const db = firebase.firestore(app);
+    
 
         // ✅ Handle Form Submission
         document.addEventListener("DOMContentLoaded", function () {
@@ -226,22 +206,6 @@
                     console.error("Error registering:", error);
                      alert("Ett fel har uppstått under registreringen. Pröva igen.");
                 });
-
-                // // Add data to Firestore
-                // db.collection("registrations").add({
-                //     name: name,//
-                //     bringing_family: parseInt(bringingFamily),
-                //     family_members: parseInt(familyMembers),
-                //     food: parseInt(food),
-                //     timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                // })
-                // .then(() => {
-                //     window.location.href = "registration_success.html"; // Redirect on success
-                // })
-                // .catch((error) => {
-                //     console.error("Err // });or registering:", error);
-                //     alert("Ett fel har uppstått under registreringen. Pröva igen.");
-                // });
              });
         });
     </script>
