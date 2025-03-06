@@ -106,6 +106,24 @@
             margin-left: 50px;
             text-align: center;
         }
+        .container {
+            display: flex;
+            align-items: center; /* Aligns items vertically */
+            justify-content: space-between; /* Ensures even spacing */
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Image on the right, text on the left */
+        .text {
+            flex: 1; /* Takes available space */
+            padding-right: 20px;
+        }
+        .image img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -122,7 +140,19 @@
         <a href="#contact">Kontakt</a>
     </nav>
     <section id="about">
-        <h2>Om dagen</h2>
+        <div class="container">
+            <div class="text">
+                <h2>Om dagen</h2>
+                <p >Vi önskar att samla när familj och vänner till en informell namngivningscermoni för Johannes lördag den 3 maj 2025.</p>
+                <p >Vi planerar inte för något speciellt upplägg, utan ser hellre för oss att vi får möjlighet att umgås några timmar tillsammans, äta lite enklare lunch, njuta en kopp kaffe/te med något sött till.</p>
+        
+            </div>
+            <div class="image">
+                <img src="/home/sarabj/Documents/Johannesx.jpg" alt="Product Image" width="300">
+            </div>
+        </div>
+
+
         <p >Vi önskar att samla när familj och vänner till en informell namngivningscermoni för Johannes lördag den 3 maj 2025.</p>
         <p >Vi planerar inte för något speciellt upplägg, utan ser hellre för oss att vi får möjlighet att umgås några timmar tillsammans, äta lite enklare lunch, njuta en kopp kaffe/te med något sött till.</p>
 
