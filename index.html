@@ -110,14 +110,14 @@
             display: flex;
             align-items: center; /* Aligns items vertically */
             justify-content: space-between; /* Ensures even spacing */
-            max-width: 800px;
+            max-width: 900px;
             margin: auto;
             padding: 20px;
         }
 
  
         .image {
-            flex: 1; /* Image takes available space */
+            flex: 0 1 40%; /* Image takes up 40% of the container */
             padding-right: 20px; /* Adds spacing between image and text */
         }
 
@@ -128,7 +128,7 @@
         }
 
         .text {
-            flex: 1; /* Text takes available space */
+            flex: 0 1 60%; /* Text takes up 60% of the container */
             padding-left: 20px; /* Adds spacing between image and text */
         }
     </style>
