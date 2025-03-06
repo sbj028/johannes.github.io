@@ -190,13 +190,13 @@
             appId: "1:436276449567:web:57a1d8107cc14ed579202a"
         };
 
-        // ✅ Initialize Firebase
-        //const app = initializeApp(firebaseConfig);
-        //const db = getFirestore(app); // Used by Firestore SDK (v9 and above) 
+        //✅ Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app); // Used by Firestore SDK (v9 and above) 
         
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore(app);
+        // // Initialize Firebase
+        // const app = firebase.initializeApp(firebaseConfig);
+        // const db = firebase.firestore(app);
 
         // ✅ Handle Form Submission
         document.addEventListener("DOMContentLoaded", function () {
