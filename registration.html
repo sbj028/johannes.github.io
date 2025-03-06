@@ -8,12 +8,12 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
-            max-width: 600px; /* Increased form width */
+            max-width: 600px;
             margin: auto;
-            padding: 30px; /* Increased padding inside the form */
+            padding: 30px;
             display: flex;
             justify-content: center;
-            align-items: center; 
+            align-items: center;
             height: 100vh;
         }
         .form-container {
@@ -54,9 +54,6 @@
         .form-container button:hover {
             background-color: #0056b3;
         }
-
-        /* Radio button styling */
-        /* For yes/no optionsre  */
         .radio-group {
             display: flex;
             gap: 10px;
@@ -69,25 +66,20 @@
             const hiddenInput = document.getElementById('family_members_hidden');
             const displayInput = document.getElementById('family_members_display');
 
-    
             if (bringingFamilyYes.checked) {
-                // "Yes" => enable the display input
                 displayInput.disabled = false;
                 displayInput.required = true;
                 displayInput.value = "";
                 displayInput.min = 1;
 
-                // Whenever user types, mirror to the hidden input:
                 displayInput.addEventListener('input', () => {
-                hiddenInput.value = displayInput.value;
+                    hiddenInput.value = displayInput.value;
                 });
             } else {
-                // "No" => forcibly set hidden to "0"
                 displayInput.value = "";
                 displayInput.disabled = true;
                 displayInput.required = false;
                 hiddenInput.min = "0";
-
                 hiddenInput.value = "0";
             }
         }
@@ -99,52 +91,23 @@
         <p>Fyll i formuläret nedan för att registrera dig till namngivningscermonien.</p>
         <p>Om en helt hushåll ska registrera sig så räcker det att en person skiver in sitt namn i fältet "Namn".</p>
         <form id="registrationForm">
-            <label for="name">Namn </label>
+            <label for="name">Namn</label>
             <input type="text" id="name" name="name" placeholder="Skriv in ditt namn" required>
 
-            <!-- Yes/No Question- Additional family members? -->
             <label>Önskar du att anmäla fler från samma hushåll/familj till eventet?</label>
-             <div class="radio-group">
-                <input 
-                    type="radio" 
-                    id="yes" 
-                    name="bringing_family" 
-                    value="1" 
-                    onclick="toggleFamilyMembersInput()"
-                >
+            <div class="radio-group">
+                <input type="radio" id="yes" name="bringing_family" value="1" onclick="toggleFamilyMembersInput()">
                 <label for="yes">Ja</label>
 
-                <input 
-                    type="radio" 
-                    id="no" 
-                    name="bringing_family" 
-                    value="0" 
-                    onclick="toggleFamilyMembersInput()"
-                    checked
-                >
+                <input type="radio" id="no" name="bringing_family" value="0" onclick="toggleFamilyMembersInput()" checked>
                 <label for="no">Nej</label>
             </div>
 
-            <!-- Hidden field that’s *always* submitted -->
-            <input 
-                type="hidden" 
-                id="family_members_hidden" 
-                name="family_members" 
-                value="0" 
-            >
+            <input type="hidden" id="family_members_hidden" name="family_members" value="0">
 
-            <!-- Visible field for user input, might be disabled if "No" is selected -->
             <label for="family_members_display">Hur många extra tar du med?</label>
-                <input 
-                    type="number" 
-                    id="family_members_display" 
-                    min="1" 
-                    max="10" 
-                    placeholder="Ange antal utöver dig själv"
-                    disabled
-                >
+            <input type="number" id="family_members_display" min="1" max="10" placeholder="Ange antal utöver dig själv" disabled>
 
-            <!-- Yes/No Question -->
             <label>Önskar du att bidra med mat/fika till dagen?</label>
             <div class="radio-group">
                 <input type="radio" id="yesFood" name="food" value="1" required>
@@ -158,12 +121,10 @@
         </form>
     </div>
 
-    <!-- // ✅ Import Firebase SDK for Firestore (v9+ modular API) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 
-        // ✅ Firebase Configuration (Replace with Your Firebase Details)
         const firebaseConfig = {
             apiKey: "AIzaSyDEk82P1X1aJVELBIt8D4qQ21G2hPAJuMQ",
             authDomain: "eventregistration-d68ae.firebaseapp.com",
@@ -173,16 +134,13 @@
             appId: "1:436276449567:web:57a1d8107cc14ed579202a"
         };
 
-        //✅ Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app); // Used by Firestore SDK (v9 and above) 
-    
+        const db = getFirestore(app);
 
-        // ✅ Handle Form Submission
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById('registrationForm').addEventListener('submit', function (e) {
                 e.preventDefault();
-                console.log("Form submission triggered!"); // Debugging
+                console.log("Form submission triggered!");
 
                 const name = document.getElementById("name").value;
                 const bringingFamily = document.querySelector('input[name="bringing_family"]:checked').value;
@@ -190,7 +148,7 @@
                 const food = document.querySelector('input[name="food"]:checked').value;
 
                 console.log("Submitting:", { name, bringingFamily, familyMembers, food });
-                // // Add data to Firestore
+
                 addDoc(collection(db, "registrations"), {
                     name: name,
                     bringing_family: parseInt(bringingFamily),
@@ -199,14 +157,13 @@
                     timestamp: serverTimestamp()
                 })
                 .then(() => {
-                    // Redirect to a success page (e.g., registration_success.html)
                     window.location.href = "registration_success.html";
                 })
                 .catch((error) => {
                     console.error("Error registering:", error);
-                     alert("Ett fel har uppstått under registreringen. Pröva igen.");
+                    alert("Ett fel har uppstått under registreringen. Pröva igen.");
                 });
-             });
+            });
         });
     </script>
 </body>
