@@ -211,38 +211,38 @@
 
                 console.log("Submitting:", { name, bringingFamily, familyMembers, food });
                 // // Add data to Firestore
-                // addDoc(collection(db, "registrations"), {
-                //     name: name,
-                //     bringing_family: parseInt(bringingFamily),
-                //     family_members: parseInt(familyMembers),
-                //     food: parseInt(food),
-                //     timestamp: serverTimestamp()
-                // })
-                // .then(() => {
-                //     // Redirect to a success page (e.g., registration_success.html)
-                //     window.location.href = "registration_success.html";
-                // })
-                // .catch((error) => {
-                //     console.error("Error registering:", error);
-                //     alert("Ett fel har uppstått under registreringen. Pröva igen.");
-                // });
-
-                // Add data to Firestore
-                db.collection("registrations").add({
+                addDoc(collection(db, "registrations"), {
                     name: name,
                     bringing_family: parseInt(bringingFamily),
                     family_members: parseInt(familyMembers),
                     food: parseInt(food),
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    timestamp: serverTimestamp()
                 })
                 .then(() => {
-                    window.location.href = "registration_success.html"; // Redirect on success
+                    // Redirect to a success page (e.g., registration_success.html)
+                    window.location.href = "registration_success.html";
                 })
                 .catch((error) => {
                     console.error("Error registering:", error);
                     alert("Ett fel har uppstått under registreringen. Pröva igen.");
                 });
-            });
+
+                // // Add data to Firestore
+                // db.collection("registrations").add({
+                //     name: name,
+                //     bringing_family: parseInt(bringingFamily),
+                //     family_members: parseInt(familyMembers),
+                //     food: parseInt(food),
+                //     timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                // })
+                // .then(() => {
+                //     window.location.href = "registration_success.html"; // Redirect on success
+                // })
+                // .catch((error) => {
+                //     console.error("Error registering:", error);
+                //     alert("Ett fel har uppstått under registreringen. Pröva igen.");
+                // });
+            // });
         });
     </script>
 </body>
