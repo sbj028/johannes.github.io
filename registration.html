@@ -163,15 +163,16 @@
     <!-- Firebase SDK -->
     <!--<script type="module"> -->
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js"></script> -->
 
     <!-- Previous version: 
-    // ✅ Import Firebase SDK for Firestore (v9+ modular API)
-    //import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-    //import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js"; -->
+    // ✅ Import Firebase SDK for Firestore (v9+ modular API) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 
-    <script>
+        //<script>
         // ✅ Firebase Configuration (Replace with Your Firebase Details)
         const firebaseConfig = {
             // apiKey: "AIzaSyAapjkSdw-kjOfDY7NzpYSPbYsBHNyM_5g",
@@ -198,45 +199,49 @@
         const db = firebase.firestore(app);
 
         // ✅ Handle Form Submission
-        document.getElementById('registrationForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('registrationForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                console.log("Form submission triggered!"); // Debugging
 
-            const name = document.getElementById("name").value;
-            const bringingFamily = document.querySelector('input[name="bringing_family"]:checked').value;
-            const familyMembers = document.getElementById("family_members_hidden").value;
-            const food = document.querySelector('input[name="food"]:checked').value;
+                const name = document.getElementById("name").value;
+                const bringingFamily = document.querySelector('input[name="bringing_family"]:checked').value;
+                const familyMembers = document.getElementById("family_members_hidden").value;
+                const food = document.querySelector('input[name="food"]:checked').value;
 
-            // // Add data to Firestore
-            // addDoc(collection(db, "registrations"), {
-            //     name: name,
-            //     bringing_family: parseInt(bringingFamily),
-            //     family_members: parseInt(familyMembers),
-            //     food: parseInt(food),
-            //     timestamp: serverTimestamp()
-            // })
-            // .then(() => {
-            //     // Redirect to a success page (e.g., registration_success.html)
-            //     window.location.href = "registration_success.html";
-            // })
-            // .catch((error) => {
-            //     console.error("Error registering:", error);
-            //     alert("Ett fel har uppstått under registreringen. Pröva igen.");
-            // });
+                console.log("Submitting:", { name, bringingFamily, familyMembers, food });
+                // // Add data to Firestore
+                // addDoc(collection(db, "registrations"), {
+                //     name: name,
+                //     bringing_family: parseInt(bringingFamily),
+                //     family_members: parseInt(familyMembers),
+                //     food: parseInt(food),
+                //     timestamp: serverTimestamp()
+                // })
+                // .then(() => {
+                //     // Redirect to a success page (e.g., registration_success.html)
+                //     window.location.href = "registration_success.html";
+                // })
+                // .catch((error) => {
+                //     console.error("Error registering:", error);
+                //     alert("Ett fel har uppstått under registreringen. Pröva igen.");
+                // });
 
-            // Add data to Firestore
-            db.collection("registrations").add({
-                name: name,
-                bringing_family: parseInt(bringingFamily),
-                family_members: parseInt(familyMembers),
-                food: parseInt(food),
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            })
-            .then(() => {
-                window.location.href = "registration_success.html"; // Redirect on success
-            })
-            .catch((error) => {
-                console.error("Error registering:", error);
-                alert("Ett fel har uppstått under registreringen. Pröva igen.");
+                // Add data to Firestore
+                db.collection("registrations").add({
+                    name: name,
+                    bringing_family: parseInt(bringingFamily),
+                    family_members: parseInt(familyMembers),
+                    food: parseInt(food),
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                })
+                .then(() => {
+                    window.location.href = "registration_success.html"; // Redirect on success
+                })
+                .catch((error) => {
+                    console.error("Error registering:", error);
+                    alert("Ett fel har uppstått under registreringen. Pröva igen.");
+                });
             });
         });
     </script>
