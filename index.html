@@ -131,6 +131,23 @@
             flex: 0 1 60%; /* Text takes up 60% of the container */
             padding-left: 20px; /* Adds spacing between image and text */
         }
+
+        /* Lista: */
+        .list-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two equal columns */
+            gap: 10px; /* Space between columns */
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .list-item {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
     </style>
 </head>
 <body>
@@ -198,6 +215,20 @@
             <button onclick="window.location.href='registration.html'" id="regbutton" title="Registrering">REGISTRERING</button>
 
     </section>
+
+    
+    <div class="list-container">
+        <div class="list-item">NamnItem 1</div>
+        <div class="list-item">Description 1</div>
+        <div class="list-item">Item 2</div>
+        <div class="list-item">Description 2</div>
+        <div class="list-item">Item 3</div>
+        <div class="list-item">Description 3</div>
+        <div class="list-item">Item 4</div>
+        <div class="list-item">Description 4</div>
+    </div>
+
+
 
     <section id="contact">
         <!-- Flexbox layout -->
