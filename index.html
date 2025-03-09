@@ -156,6 +156,59 @@
             border-radius: 5px;
         }
 
+        /* To make webpage look similar at computer/phone: */
+        .container {
+            display: flex;
+            align-items: center; /* Aligns image and text vertically */
+            justify-content: space-between; /* Ensures even spacing */
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            gap: 20px; /* Space between image and text */
+        }
+
+        /* Adjust page for tablets and smaller screens */
+        @media (max-width: 768px) {/* Adjust for tablets and smaller screens */
+            .container {
+                flex-direction: column; /* Stack items vertically on small screens */
+                text-align: center;
+            }
+
+            .image {
+                flex: none; /* Reset flex behavior */
+                width: 100%; /* Make image full width */
+                padding-right: 0; /* Remove spacing */
+            }
+
+            .text {
+                flex: none;
+                width: 100%; /* Make text full width */
+                padding-left: 0;
+            }
+
+            .image img {
+                max-width: 80%; /* Reduce image size */
+                height: auto;
+                margin: auto; /* Center the image */
+                display: block;
+            }
+        }
+
+        /* Adjust font size based on screen width */
+        h2 {
+            font-size: clamp(1.5rem, 5vw, 2rem); /* Adjusts between 1.5rem and 2rem */
+        }
+
+        p {
+            font-size: 1rem; /* Default size */
+        }
+
+        @media (max-width: 480px) {
+            p {
+                font-size: 0.9rem; /* Smaller text for small screens */
+            }
+        }
+    
     </style>
 </head>
 <body>
