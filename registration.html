@@ -22,6 +22,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 600px;
+            margin: auto;
         }
         .form-container h2 {
             text-align: center;
@@ -58,6 +59,16 @@
             display: flex;
             gap: 10px;
             align-items: center;
+        }
+
+
+        /*Responsive adjusatment of form for mobiles*/
+        @media (max-width: 768px) { /* For tablets and smaller screens */
+            .form-container {
+                width: 90%; /* Adjust width for smaller screens */
+                max-width: 100%; /* Prevents it from getting too large */
+                padding: 15px; /* Reduce padding for smaller screens */
+            }
         }
     </style>
     <script>
