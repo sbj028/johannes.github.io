@@ -70,6 +70,22 @@
                 padding: 15px; /* Reduce padding for smaller screens */
             }
         }
+
+        /* Adjust font size based on screen width */
+        h2 {
+            font-size: clamp(1.5rem, 5vw, 2rem); /* Adjusts between 1.5rem and 2rem */
+        }
+
+        p {
+            font-size: 1rem; /* Default size */
+        }
+
+        @media (max-width: 480px) {
+            p {
+                font-size: 0.9rem; /* Smaller text for small screens */
+            }
+        }
+
     </style>
     <script>
         function toggleFamilyMembersInput() {
