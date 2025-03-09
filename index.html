@@ -167,7 +167,7 @@
             gap: 20px; /* Space between image and text */
         }
 
-        /* Adjust page for tablets and smaller screens */
+        /* Adjust text+image for tablets and smaller screens */
         @media (max-width: 768px) {/* Adjust for tablets and smaller screens */
             .container {
                 flex-direction: column; /* Stack items vertically on small screens */
@@ -209,6 +209,32 @@
             }
         }
     
+        /* Map container to rpoperly resize the map on other devices*/
+        .map-container {
+            position: relative;
+            width: 100%; /* Ensures it fits within its container */
+            max-width: 600px; /* Prevents it from getting too large */
+            margin: auto; /* Centers it */
+            overflow: hidden; /* Prevents overflow issues */
+            padding-top: 56.25%; /* Aspect ratio for 16:9 responsiveness */
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Makes it fill the container */
+            height: 100%; /* Maintains aspect ratio */
+            border: 0;
+        }
+        /* Adjust map container for smaller screens, i.e. resize the Google map */
+        @media (max-width: 768px) {
+            .map-container {
+                max-width: 90%; /* Slightly reduce width on smaller screens */
+                padding-top: 75%; /* Adjust aspect ratio for better fit */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -245,7 +271,18 @@
         <p>Vi håller till på personalrummet på Tromstun ungdomsskole (se karta), och  möts <b>klockan 12:00.</b></p>
         <p> Det finns parkeringsplats på ovansidan av Tromstun, den kommer du till genom att köra förbi ovansidan av Tromsdalen Idrettshall. Parkering är gratis.</p>
         <p> Ring Lars-Eirik eller Sara när ni står utaför ingången till Tromstun ungdomsskole, så kommer vi och släpper in er.</p>
-        <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1387.4624776316314!2d19.010681677856642!3d69.65019498113506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x45c4c44b1742b8a5%3A0x8780271afb641d6b!2sTromstun%20school!5e0!3m2!1ssv!2sno!4v1736065079905!5m2!1ssv!2sno" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+
+        
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1387.4624776316314!2d19.010681677856642!3d69.65019498113506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x45c4c44b1742b8a5%3A0x8780271afb641d6b!2sTromstun%20school!5e0!3m2!1ssv!2sno!4v1736065079905!5m2!1ssv!2sno"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        
     </section>
 
     <section id="gifts">
