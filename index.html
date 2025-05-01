@@ -156,6 +156,85 @@
             border-radius: 5px;
         }
 
+        /* To make webpage look similar at computer/phone: */
+        .container {
+            display: flex;
+            align-items: center; /* Aligns image and text vertically */
+            justify-content: space-between; /* Ensures even spacing */
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            gap: 20px; /* Space between image and text */
+        }
+
+        /* Adjust text+image for tablets and smaller screens */
+        @media (max-width: 768px) {/* Adjust for tablets and smaller screens */
+            .container {
+                flex-direction: column; /* Stack items vertically on small screens */
+                text-align: center;
+            }
+
+            .image {
+                flex: none; /* Reset flex behavior */
+                width: 100%; /* Make image full width */
+                padding-right: 0; /* Remove spacing */
+            }
+
+            .text {
+                flex: none;
+                width: 100%; /* Make text full width */
+                padding-left: 0;
+            }
+
+            .image img {
+                max-width: 80%; /* Reduce image size */
+                height: auto;
+                margin: auto; /* Center the image */
+                display: block;
+            }
+        }
+
+        /* Adjust font size based on screen width */
+        h2 {
+            font-size: clamp(1.5rem, 5vw, 2rem); /* Adjusts between 1.5rem and 2rem */
+        }
+
+        p {
+            font-size: 1rem; /* Default size */
+        }
+
+        @media (max-width: 480px) {
+            p {
+                font-size: 0.9rem; /* Smaller text for small screens */
+            }
+        }
+    
+        /* Map container to rpoperly resize the map on other devices*/
+        .map-container {
+            position: relative;
+            width: 100%; /* Ensures it fits within its container */
+            max-width: 600px; /* Prevents it from getting too large */
+            margin: auto; /* Centers it */
+            overflow: hidden; /* Prevents overflow issues */
+            padding-top: 56.25%; /* Aspect ratio for 16:9 responsiveness */
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Makes it fill the container */
+            height: 100%; /* Maintains aspect ratio */
+            border: 0;
+        }
+        /* Adjust map container for smaller screens, i.e. resize the Google map */
+        @media (max-width: 768px) {
+            .map-container {
+                max-width: 90%; /* Slightly reduce width on smaller screens */
+                padding-top: 75%; /* Adjust aspect ratio for better fit */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -176,7 +255,7 @@
             <div class="text">
                 <h2>Om dagen</h2>
                 <p >Vi önskar att samla när familj och vänner till en informell namngivningsfest och firande av Johannes <b>Lördag den 3e maj 2025</b>. Barn är välkomna.</p>
-                <p >Planen för dagen är att umgås några timmar för att äta lunch. Vi avlsutar lunchen med kaffe/te och fika (kaker).</p>
+                <p >Planen för dagen är att umgås några timmar för att äta lunch. Vi avslutar lunchen med kaffe/te och fika (kaker).</p>
                     
                 </p> Tanken är att alla som har lust att äta lunch tar med ett bidrag till lunchen också delar vi på allt (tänk tapas/plockmat/knytkalas).</p>
         
@@ -191,8 +270,19 @@
         <h2>Plats och tid</h2>
         <p>Vi håller till på personalrummet på Tromstun ungdomsskole (se karta), och  möts <b>klockan 12:00.</b></p>
         <p> Det finns parkeringsplats på ovansidan av Tromstun, den kommer du till genom att köra förbi ovansidan av Tromsdalen Idrettshall. Parkering är gratis.</p>
-        <p> Ring Lars-Eirik eller Sara när ni står utaför ingången till Tromstun ungdomsskole, så kommer vi och släpper in er.</p>
-        <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1387.4624776316314!2d19.010681677856642!3d69.65019498113506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x45c4c44b1742b8a5%3A0x8780271afb641d6b!2sTromstun%20school!5e0!3m2!1ssv!2sno!4v1736065079905!5m2!1ssv!2sno" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+        <p> Ring Lars-Eirik eller Sara när ni står utanför ingången till Tromstun ungdomsskole, så kommer vi och släpper in er.</p>
+
+        
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1387.4624776316314!2d19.010681677856642!3d69.65019498113506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x45c4c44b1742b8a5%3A0x8780271afb641d6b!2sTromstun%20school!5e0!3m2!1ssv!2sno!4v1736065079905!5m2!1ssv!2sno"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        
     </section>
 
     <section id="gifts">
@@ -214,7 +304,16 @@
     <div class="list-container">
         <div class="header">Bidrag till lunchen</div>
         <div class="list-item">Kaffe/Te, dricka, smör, bröd (frallor/rundstykker) eller liknande. </div>
-        <div class="list-item"></div>
+        <div class="list-item">Sallad, Västerbottenpaj (delvis laktosfri) och punschparfait (laktosfri).</div>
+        <div class="list-item">Broccolisallad.</div>
+        <div class= "list-item">Köttpålägg, äggsallad och kake</div>
+        <div class= "list-item">Halloumisallad med sötpotatis</div>
+        <div class= "list-item">Äggrullar</div>
+        <div class= "list-item">Spenat och chevré paj</div>
+        <div class= "list-item">Lasagne, sallad och brownie</div>
+        <div class= "list-item">Diverse grönsaker</div>
+        <div class= "list-item">Rökt lax och köttpålägg</div>
+        <div class= "list-item">Brie och foccacia</div>
         <!-- <div class="list-item">Item 2</div>
         <div class="list-item">Description 2</div>
         <div class="list-item">Item 3</div>
@@ -229,7 +328,7 @@
     <section id="osa">
         <h2>OSA/RSVP</h2>
 
-        <p> Registrering till dagen kan göras genom att klicka på knappen "REGISTRERING" nedanför. Om flera från samma hushåll önskar att bli med på dagen, så kan du ange det i formuläret. </p>
+        <p> Registrering till dagen kan göras genom att klicka på registrerings-knappen nedanför. Om flera från samma hushåll önskar att bli med på dagen, så kan du ange det i formuläret. </p>
         <p></p> Frist/Sista dag för att meddela att du kommer är <b> Fredag den 25e April. </b></p>
         
             <button onclick="window.location.href='registration.html'" id="regbutton" title="Registrering">REGISTRERING</button>
@@ -244,10 +343,12 @@
             <div class="left-aligned">
                 <h2>Lars-Eirik</h2>
                 <p >Mobil: +47 958 88 566</p>
+
             </div>
             <div class="right-aligned">
                 <h2>Sara</h2>
                 <p>Mobil: +47 412 98 492 </p>
+                
             </div>
         </div>
     </section>
